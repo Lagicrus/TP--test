@@ -1,0 +1,22 @@
+{
+  "name": "tp",
+  "version": "1.0.0",
+  "description": "TP💊-test",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lagicrus/TP--test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lagicrus/TP--test/issues"
+  },
+  "homepage": "https://github.com/Lagicrus/TP--test#readme",
+  "dependencies": {
+    "prompt": "^1.2.1"
+  }
+}
