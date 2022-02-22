@@ -1,13 +1,10 @@
 const prompt = require("prompt");
-const {addToFormulary} = require("./actions.js");
-const {index} = require("./schemas");
+const {menu} = require("./actions.js");
 const formulary = [];
+const stock = {}
 
 prompt.message = "";
 prompt.start();
 
-prompt.get(index, (err, result) => {
-  if(result.action === "formulary") {
-    addToFormulary(formulary);
-  }
-});
+
+menu(formulary, stock);
