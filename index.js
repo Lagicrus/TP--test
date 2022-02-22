@@ -7,7 +7,7 @@ prompt.message = "";
 prompt.start();
 
 prompt.get(index, (err, result) => {
-  if(result.action === "add") {
+  if(result.action === "formulary") {
     addToFormulary(formulary);
   }
 });

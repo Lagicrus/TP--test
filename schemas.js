@@ -39,9 +39,9 @@ const index = {
     action: {
       description: "What action do you want to perform?",
       type: "string",
-      message: "Valid actions are: Add",
+      message: "Valid actions are: Formulary",
       required: true,
-      pattern: /^(add)$/i,
+      pattern: /^(formulary)$/i,
     }
   }
 }
