@@ -5,6 +5,7 @@ const {toTitleCase, listFormulary, regexListToString} = require("./tools");
 function addToFormulary(formulary) {
   const internalPattern = addDrug.properties.medication.internalPattern;
   console.log(`Currently supported Medications: ${regexListToString(internalPattern)}`);
+  console.log("Please enter either one at a time, or with a comma between them.");
 
   prompt.get(addDrug, (err, result) => {
     const {medication, continueAdding} = result;
