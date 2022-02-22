@@ -1,3 +1,5 @@
+const {packInfo} = require("./packinfo");
+
 function toTitleCase(string) {
     return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
 }
@@ -23,9 +25,23 @@ function listToGrammaticallyCorrectString(list) {
     }
 }
 
+function listStock(stock) {
+    let tableStock = [];
+    for(const medication in stock) {
+        tableStock.push({
+            Name: medication,
+            Strength: packInfo[medication].strength,
+            Pack_Size: packInfo[medication].pack_size,
+            Total_Packs: stock[medication]
+        });
+    }
+    console.table(tableStock);
+}
+
 module.exports = {
     toTitleCase,
     listFormulary,
     regexListToString,
-    listToGrammaticallyCorrectString
+    listToGrammaticallyCorrectString,
+    listStock
 }
