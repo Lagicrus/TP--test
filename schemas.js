@@ -1,3 +1,6 @@
+// Schema for Prompt for how to deal with adding medication
+// Conform was written to deal with both users adding a single medication and users adding multiple medications at once
+// This was done with using the internal Regex and list splitting
 const addDrug = {
   properties: {
     medication: {
@@ -34,6 +37,7 @@ const addDrug = {
   }
 }
 
+// Handles finding where the user wants to go
 const index = {
   properties: {
     action: {
@@ -46,6 +50,10 @@ const index = {
   }
 }
 
+// Handles the user trying to add stock to the system
+// Note: Pattern and Message are not included here as they are more dynamic
+// As the user enters the information earlier, it isn't  a static set
+// So this is more of a barebones schema
 const stock = {
   properties: {
     medication: {

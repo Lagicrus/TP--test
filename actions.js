@@ -2,7 +2,9 @@ const prompt = require("prompt");
 const {addDrug, index, stock: stockSchema} = require("./schemas");
 const {toTitleCase, listFormulary, regexListToString, listToGrammaticallyCorrectString, listStock} = require("./tools");
 
+// Handles the user trying to add data to the formulary
 function addToFormulary(formulary, stock) {
+  // Get the internal regex pattern for accepted medications and convert them to a human readable list
   const internalPattern = addDrug.properties.medication.internalPattern;
   console.log(`Currently supported Medications: ${regexListToString(internalPattern)}`);
   console.log("Please enter either one at a time, or with a comma between them.");
@@ -10,6 +12,7 @@ function addToFormulary(formulary, stock) {
   prompt.get(addDrug, (err, result) => {
     const {medication, continueAdding} = result;
 
+    // If the medication passes the regex test and isn't in the formulary
     if(internalPattern.test(medication)) {
       if (!formulary.includes(toTitleCase(medication))) {
         formulary.push(toTitleCase(medication));
@@ -37,15 +40,18 @@ function addToFormulary(formulary, stock) {
   });
 }
 
+// Handles the user trying to add data to the Stock
 function addToStock(formulary, stock) {
   console.log(`Currently in the Formulary: ${listToGrammaticallyCorrectString(formulary)}`);
 
+  // Updates the barebones Schema with the data entered earlier on from the user in the Formulary
   stockSchema.properties.medication.pattern = new RegExp(`^(${formulary.join("|")})$`, "i");
   stockSchema.properties.medication.message = `Only ${listToGrammaticallyCorrectString(formulary)} are supported for stock.`;
 
   prompt.get(stockSchema, (err, result) => {
     const {medication, quantity, continueAdding} = result;
 
+    // If medication isn't in the stock, add it
     if (stock[toTitleCase(medication)] === undefined) {
       stock[toTitleCase(medication)] = quantity;
     } else {
@@ -62,6 +68,7 @@ function addToStock(formulary, stock) {
   });
 }
 
+// Main menu handler
 function menu(formulary, stock) {
   prompt.get(index).then(result => {
     const {action} = result;
