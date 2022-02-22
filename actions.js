@@ -2,9 +2,13 @@ const prompt = require("prompt");
 const {addDrug, index, stock: stockSchema} = require("./schemas");
 const {toTitleCase, listFormulary, regexListToString, listToGrammaticallyCorrectString, listStock} = require("./tools");
 
-// Handles the user trying to add data to the formulary
+/**
+ * Handles the user trying to add data to the formulary
+ * @param {[string]} formulary The formulary of medications
+ * @param {object} stock The stock of medications
+ */
 function addToFormulary(formulary, stock) {
-  // Get the internal regex pattern for accepted medications and convert them to a human readable list
+  // Get the internal regex pattern for accepted medications and convert them to a human-readable list
   const internalPattern = addDrug.properties.medication.internalPattern;
   console.log(`Currently supported Medications: ${regexListToString(internalPattern)}`);
   console.log("Please enter either one at a time, or with a comma between them.");
@@ -40,7 +44,11 @@ function addToFormulary(formulary, stock) {
   });
 }
 
-// Handles the user trying to add data to the Stock
+/**
+ * Handles the user trying to add data to the Stock
+ * @param {[string]} formulary The formulary of medications
+ * @param {object} stock The stock of medications
+ */
 function addToStock(formulary, stock) {
   console.log(`Currently in the Formulary: ${listToGrammaticallyCorrectString(formulary)}`);
 
@@ -68,7 +76,11 @@ function addToStock(formulary, stock) {
   });
 }
 
-// Main menu handler
+/**
+ * Main menu handler
+ * @param {[string]} formulary The formulary of medications
+ * @param {object} stock The stock of medications
+ */
 function menu(formulary, stock) {
   prompt.get(index).then(result => {
     const {action} = result;
