@@ -5,7 +5,24 @@ const addDrug = {
       type: "string",
       message: "Valid names are: Amoxicillin, Codeine, Diclofenac, Ibuprofen, Paracetamol, Simvastatin, Tramadol, and Warfarin",
       required: true,
-      pattern: /^(Amoxicillin|Codeine|Diclofenac|Ibuprofen|Paracetamol|Simvastatin|Tramadol|Warfarin)$/i,
+      internalPattern: /^(Amoxicillin|Codeine|Diclofenac|Ibuprofen|Paracetamol|Simvastatin|Tramadol|Warfarin)$/i,
+      conform: function (value) {
+        const check = addDrug.properties.medication.internalPattern;
+        if(check.test(value)) {
+          return true;
+        }
+        if(value.includes(",")) {
+          const valueArray = value.split(",")
+          for(const item of valueArray) {
+            if(!check.test(item)) {
+              console.log(`${item} is not a valid medication`);
+              return false;
+            }
+          }
+          return true;
+        }
+        return false;
+      }
     },
     continueAdding: {
       description: "Do you want to add another medication?",
