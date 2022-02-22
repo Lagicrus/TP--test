@@ -39,14 +39,37 @@ const index = {
     action: {
       description: "What action do you want to perform?",
       type: "string",
-      message: "Valid actions are: Formulary",
+      message: "Valid actions are: Formulary, Stock, and Exit",
       required: true,
-      pattern: /^(formulary)$/i,
+      pattern: /^(formulary|stock|exit)$/i,
     }
+  }
+}
+
+const stock = {
+  properties: {
+    medication: {
+      description: "What medication do you want to add stock for?",
+      type: "string",
+      required: true
+    },
+    quantity: {
+      description: "How many units of the medication do you want to add?",
+      type: "number",
+      required: true
+    },
+    continueAdding: {
+      description: "Do you want to add another medication?",
+      type: "string",
+      message: "Valid answers are: yes, no",
+      required: true,
+      pattern: /^(yes|no|y|n)$/i,
+    },
   }
 }
 
 module.exports = {
   addDrug,
-  index
+  index,
+  stock
 }
