@@ -45,9 +45,6 @@ function addToStock(formulary, stock) {
 
   prompt.get(stockSchema, (err, result) => {
     const {medication, quantity, continueAdding} = result;
-    console.log(result);
-    console.log(stock);
-    console.log(stock["Codeine"])
 
     if (stock[toTitleCase(medication)] === undefined) {
       stock[toTitleCase(medication)] = quantity;
