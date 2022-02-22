@@ -53,6 +53,7 @@ function addToStock(formulary, stock) {
   if(formulary.length === 0) {
     console.log("You must add medications to the formulary before adding to the stock.");
     menu(formulary, stock);
+    return;
   }
 
   console.log(`Currently in the Formulary: ${listToGrammaticallyCorrectString(formulary)}`);
