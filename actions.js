@@ -89,7 +89,8 @@ function addToStock(formulary, stock) {
  */
 function menu(formulary, stock) {
   prompt.get(index).then(result => {
-    const {action} = result;
+    let {action} = result;
+    action = action.toLowerCase();
     if (action === "formulary") {
       addToFormulary(formulary, stock)
     } else if (action === "stock") {
